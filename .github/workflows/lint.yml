@@ -24,7 +24,6 @@ jobs:
       - uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ inputs.node_version }}
-          cache: 'pnpm'
 
       - name: Install Node.js modules
         shell: bash
@@ -35,4 +34,3 @@ jobs:
         shell: bash
         run: |
           pnpm lint
-
