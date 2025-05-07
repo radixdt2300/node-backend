@@ -1,0 +1,37 @@
+import type { FastifyPluginAsync } from 'fastify';
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
+import { FastifyInstance } from 'fastify';
+
+export const swaggerPlugin: FastifyPluginAsync<{
+  routePrefix: string;
+}> = async (api, options) => {
+  await api.register(fastifySwagger, {
+    openapi: {
+      openapi: '3.1.0',
+      info: {
+        title: 'node-be',
+        version: '0.1.0',
+      },
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            bearerFormat: 'JWT',
+          },
+        },
+      },
+      security: [],
+    },
+  });
+
+  await api.register(fastifySwaggerUi, {
+    routePrefix: options.routePrefix,
+    initOAuth: {},
+  });
+};
+
+export const swaggerOnReady = (api: FastifyInstance) => {
+  api.swagger();
+};

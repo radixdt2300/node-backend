@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  node-be:
+    build:
+      context: .
+      args:
+        NODE_AUTH_TOKEN: '$NODE_AUTH_TOKEN'
+    environment:
+      - DD_ENV=local
+      - DD_SERVICE=node-be
+      - DD_VERSION=node-be
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - 8080:8080
