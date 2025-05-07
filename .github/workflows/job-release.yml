@@ -8,10 +8,11 @@ on:
 jobs:
   lint:
     name: Lint
-    uses: ./.github/workflows/job-lint.yml
+    uses: ./.github/workflows/lint.yml
     secrets: inherit
 
   deploy:
-    name: Deploy (TEST)
+    name: Deploy
     uses: ./.github/workflows/deploy.yml
     needs: [lint]
+    secrets: inherit
