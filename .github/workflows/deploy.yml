@@ -1,9 +1,7 @@
 name: Deploy Node & React to ECR
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
   deploy:

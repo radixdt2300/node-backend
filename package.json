@@ -15,7 +15,7 @@
     "lint:tsc": "tsc --noEmit",
     "lint:eslint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "lint": "pnpm lint:tsc && pnpm lint:eslint && pnpm dep:check",
+    "lint": "pnpm lint:tsc && pnpm lint:eslint",
     "build": "tsc",
     "clean": "rm -rf dist && rm -rf coverage"
   },

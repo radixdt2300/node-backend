@@ -1,0 +1,17 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    uses: ./.github/workflows/job-lint.yml
+    secrets: inherit
+
+  deploy:
+    name: Deploy (TEST)
+    uses: ./.github/workflows/deploy.yml
+    needs: [lint]

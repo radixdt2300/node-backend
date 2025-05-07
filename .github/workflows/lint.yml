@@ -1,0 +1,38 @@
+# Runs linters ensuring our code is of adequate quality.
+#
+name: Lint
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: Node version, e.g. '20'
+        type: string
+        default: '20'
+
+jobs:
+  app-lint:
+    name: App (pnpm-lint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm_install
+
+      - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: 'pnpm'
+
+      - name: Install Node.js modules
+        shell: bash
+        run: >
+          pnpm install
+
+      - name: pnmp-lint
+        shell: bash
+        run: |
+          pnpm lint
+
