@@ -1,4 +1,4 @@
-name: Deploy Node & React to ECR
+name: Deploy Node to ECR
 
 on:
   workflow_call:
